@@ -10,6 +10,9 @@ gene_enrichment_analysis.pdf
 
 # Distribution / packaging
 .Python
+model
+test
+tmp
 build/
 develop-eggs/
 dist/

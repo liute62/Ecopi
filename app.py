@@ -5,6 +5,7 @@ import streamlit as st
 import torch
 from pdf2image import convert_from_path
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from modelscope import snapshot_download
 
 from agent import Agent
 
@@ -22,12 +23,17 @@ st.caption("🚀 Ecopi 顶级生物信息研究员")
 
 # 定义模型路径
 # A Comprehensive Guide to Setting the Right Price for Your Masterpieces
-model_id = 'internlm/internlm-7b'
-#
+# model_id = 'max08/Ecopi'
 # mode_name_or_path = snapshot_download(model_id, revision='master')
-# mode_name_or_path = '/home/max/Documents/git/xtuner/work_dirs/hf_merge/Ecopi'
-mode_name_or_path = '/home/max/.cache/modelscope/hub/Shanghai_AI_Laboratory/internlm2-chat-7b'
 
+base_path = './model'
+# download repo to the base_path directory using git
+os.system('apt install git')
+os.system('apt install git-lfs')
+os.system(f'git clone https://code.openxlab.org.cn/max08/Ecopi.git {base_path}')
+os.system(f'cd {base_path} && git lfs pull')
+
+mode_name_or_path = base_path
 
 # 定义一个函数，用于获取模型和tokenizer
 @st.cache_resource
